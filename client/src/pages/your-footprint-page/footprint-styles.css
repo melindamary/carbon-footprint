@@ -1,0 +1,254 @@
+
+/** ---------------------------------FOOTPRINT CALCULATION------------------------------- */
+.footprint-heading{
+    margin: auto;
+    height: 30px;
+    text-align: center;
+    align-content: center;
+    font-size: 16px;
+    padding-top: 10px;
+    background: #d8f3dc;
+    /* border: solid 2px  */
+    padding-right: 5%;
+}
+.footprint-content{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.1rem;
+    padding-top: 30px;
+    width: 50%;
+    margin:auto;
+    margin-left: 20%;
+}
+
+.footprint-card-design{
+    /* background: rgba(216, 243, 220, 50%); */
+    background: #fff;
+    height: 225px;
+    width: 230px;
+    /* box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1); */
+    border: none;
+    border: solid 1px #74c69d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 45%;
+    padding-top: 20px;
+    gap: 0.5rem;
+    color: #74c69d;
+    
+}
+
+.footprint-card-design div{
+    /* background: pink; */
+    font-size: 20px;
+    width: 220px;
+    height: 50px;
+    text-align: center;
+    margin-left: -87%;
+    padding: 0px 10px 0px 10px;
+}
+.footprint-card-design:hover{
+    background: rgba(216, 243, 220, 100%);
+    color: #40916c;
+}
+
+.calculator-heading button{
+    margin-left: -96%;
+    height: 37px;
+    width: 37px;
+    margin-top: -8px;
+    background: transparent;
+    border: 1px solid #40916c;
+    color: #40916c;
+    cursor: pointer;
+    padding-top: 5px;
+    border-radius: 30px;
+    padding-right: 6px;
+} 
+.calculator-heading button:hover{
+    background: #40916c;
+    color: white;
+    border-radius: 30px;
+
+}
+
+.footprint-category-content {
+    background: #fff;
+    margin-top: 10px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    height: 530px;
+}
+.footprint-category-content h3 {
+    border: none;
+    border-bottom: solid 1px #eee;
+    padding-bottom: 10px;
+}
+.calculator-form{
+    display: flex;
+    flex-direction: column;
+}
+.calculator-form label{
+    font-size: 17px;
+}
+
+.calculator-form input, .calculator-form select{
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 10px;
+    border: solid 1px #dedede;
+    border-radius: 5px;
+
+}
+
+.calculator-form select{
+    width: 314px;
+    padding: 5px;
+    height: 35px;
+}
+.calculator-form input:focus,
+.calculator-form input:hover{
+    border: solid 1px #2d6a4f;
+}
+.calculator-form input:focus{
+    outline: none;
+}
+
+.calculator-form button{
+    width: 130px;
+    height: 42px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 20px;
+    margin-top: 10px;
+    background: #fff;
+    color: #40916c;
+    font-weight: bold;
+    border: solid 1px #40916c;
+}
+.calculator-form button:hover{
+    background: #40916c;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footprint-buttons {
+    display: flex;
+    gap: 1rem;
+}
+/** ---------------------------------FOOTPRINT CALCULATION END------------------------------- */
+
+/** ---------------------------------- IMPACT TRACKER ---------------------------------------- */
+
+.results{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    overflow: hidden;
+    padding: 10px;
+}
+.table{
+    width:800px;
+    margin: auto;
+    margin-top: 10px;
+    /* margin-left: 10px; */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
+    
+}
+.charts{
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 700px;
+    height: 600px;
+}
+
+.doughnut-center-text{
+    position: relative;
+    top: 290px;
+    left: -104px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #2d6a4f;
+    text-align: center;
+    /* background: blue; */
+}
+
+.tabs-footprint{
+    display: flex;
+    margin: auto ;
+    height: 30px;
+    width: 902px;
+}
+.tab-button-footprint, .active-tab-footprint{
+   width: 160px;
+   border: none;
+   background: white;
+   font-size: 16px;
+   color: #40916c;
+   text-align: left;
+   /* font-weight: bold; */
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 0px;
+   border-bottom: solid 2px #52b788;
+   
+}
+
+.tab-button-footprint:hover{
+    border-bottom: solid 1px #52b788;
+    font-weight: bold;
+    background: rgba(216,243,220,0.4);
+    cursor: pointer;
+}
+
+.active-tab-footprint{
+    border: none;
+    background: #D8F3DC;
+    font-weight: bold;
+    
+}
+.table-footer{
+    font-size: 16px;
+    font-weight: bold;
+    color: #2d6a4f;
+}
+.table-footer:nth-child(1){
+    padding-left: 38.5%;
+}
+.table-footer:nth-child(2){
+    padding-left: 33.5%;
+}
+
+.results-button{
+    width: 150px;
+    height: 30px;
+    margin-left: 17.5%;
+    background: transparent;
+    border: solid 1px #2d6a4f;
+    border-radius: 2px;
+    background-color: #D8F3DC;
+    color: #2d6a4f;
+    font-weight: bold;
+}
+/** ---------------------------------- IMPACT TRACKER END ------------------------------------------------ */
+
+.search-bar{
+    display: flex;
+    /* background: pink; */
+    margin-left: 61.5%;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+.search-bar input{
+    width: 200px;
+    height: 20px;
+    padding-left: 30px;
+    outline: none;
+    border: solid 1px #dedede;
+    color: #2d6a4f;
+}

@@ -1,0 +1,314 @@
+.view-button, .delete-button, .edit-button, .active-button{
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding-top: 5px;
+    
+}
+.view-button{
+    color: green;
+}
+
+.delete-button{
+    color: #d11a2a;
+}
+.view-button:hover{
+    color: #52b788;
+    background: rgba(0,255,0,0.1);
+    cursor: pointer;
+}
+.delete-button:hover{
+    color: red;
+    background: rgba(255,0,0,0.1);
+    cursor: pointer;
+}
+.edit-button{
+    color: #d8bb5d;
+}
+.edit-button:hover{
+    color: gold;
+    background: rgba(255,215,0,0.1);
+    cursor: pointer;
+}
+.active-button{
+    color: #40916c;
+}
+.active-button:hover{
+    color: #74c69d;
+    background: rgba(0,255,0,0.1);
+    cursor: pointer;
+}
+
+/* Add Cause button popup */
+.inputs{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 1rem;
+    margin: auto; 
+    padding: 10px;
+}
+
+.inputs input, .inputs textarea{
+    outline: none;
+    width: 500px;
+    color: rgba(0,0,0,0.9);
+}
+.inputs textarea{
+    height: 130px;
+    width: 518px;
+    font-size: 16px;
+}
+
+.inputs-buttons{
+    margin: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.inputs button{
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.inputs button:hover{
+    cursor: pointer;
+}
+
+.add-button{
+    background: #52b788;
+    color: #fff;
+}
+.add-button:hover{
+    background: #40916c;
+}
+.cancel-button{
+    background: #d11a2a;
+    color: #fff;
+}
+.cancel-button:hover{
+    background: #b80111;
+}
+
+
+/* Header */
+.header-section{
+    display: flex;
+}
+/* Tabs section */
+
+.tabs-section{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10%;
+    height: 35px;
+    width: 400px;
+}
+.tabs-section-button, .tab-active{
+   width: 180px;
+   border: none;
+   background: white;
+   font-size: 16px;
+   color: #40916c;
+   text-align: left;
+   /* font-weight: bold; */
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 0px;
+   border-bottom: solid 2px #52b788;
+   
+}
+
+.tabs-section-button:hover{
+    border-bottom: solid 1px #52b788;
+    font-weight: bold;
+    background: rgba(216,243,220,0.4);
+    cursor: pointer;
+}
+
+.tab-active{
+    border: none;
+    background: #D8F3DC;
+    font-weight: bold;
+}
+
+
+.add-cause{
+    background: #b7e4c7;
+    height: 30px;
+    width: 110px;
+    margin-left: 39%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: solid 1px #40916c;
+    color: #1b4332;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.add-cause:hover{
+    background: #40916c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Enable and disable buttons for offset project */
+.enable-button, .disable-button{
+    background: transparent;
+    border: none;
+    height: 25px;
+    width: 100px;
+}
+.enable-button:hover, .disable-button:hover{
+    cursor:pointer;
+    color: #fff;
+}
+.disable-button{
+    border: solid 1px #d11a2a;
+    color: #d11a2a;
+}
+.enable-button{
+    border: solid 1px #52b788;
+    color: #52b788;
+}
+.disable-button:hover{
+    border: solid 1px #d11a2a;
+    background: #d11a2a;
+    
+}
+.enable-button:hover{
+    border: solid 1px #52b788;
+    background: #52b788
+}
+
+/* * ADMIN HOME STYLE */
+
+.admin-dashboard{
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    gap: 1rem;
+    margin-left: 6.5%;
+    margin-top: 15px;
+}
+
+.card{
+    background: #d8f3dc;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background: #d9f3d8;
+    color: #2d6a4f;
+
+}
+.card1{
+    background: rgba(255,195,9,0.4);
+}
+.card2{
+    background: rgba(255,95,59,0.4);
+}
+.card3{
+    background: rgba(46,194,126,0.4);
+    /* background: rgba(230,165,11,0.4) */
+   
+}
+.card4{
+    background: rgba(152,105,69,0.3);
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+}
+.card h2{
+    font-size: 16px;
+    font-weight: lighter;
+    margin-bottom: 15px;
+    /* background: #fff; */
+    width: 600px;
+    font-family: sans-serif;
+}
+
+.value{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.icon{
+    font-size: 24px;
+    /* margin-left: 45%; */
+    margin-top: 4.5%;
+    /* background: #fff; */
+    
+}
+
+#admin-sidebar a.active{
+    background: #95D5B2;
+}
+
+
+/* TIPS */
+
+.add-tip{
+    background: #b7e4c7;
+    height: 30px;
+    width: 120px;
+    margin-left: 20%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: solid 1px #40916c;
+    color: #1b4332;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.add-tip:hover{
+    background: #40916c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dropdown-field{
+    height: 40px;
+    font-size: 16px;
+    outline: none;
+    /* padding-left: 5px; */
+    width: 523px;
+}
+
+.tips-form{
+    padding-right: 25px;
+}
+
+.dialog-title{
+   /* background: green; */
+   width: 500px;
+}
+
+.view-tip{
+    width: 500px;
+    /* color: #fc5a8d; */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.tip-close-button{
+    position: absolute;
+    right: 20px;
+    border: none;
+    color: #fff;
+    padding-top: 5px;
+    background: transparent;
+    font-weight: bold;
+}
+
+.tip-close-button:hover{
+    color: #fc5a8d;
+    background: #dedede;
+    border-radius: 15px;
+}

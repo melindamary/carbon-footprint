@@ -1,0 +1,32 @@
+.tabs{
+    display: flex;
+    margin: auto ;
+    margin-top: 15px;
+    height: 35px;
+    width: 759px;
+}
+.tab-button, .active-tab{
+   width: 160px;
+   border: none;
+   background: white;
+   font-size: 16px;
+   color: #40916c;
+   text-align: left;
+   /* font-weight: bold; */
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 0px;
+   border-bottom: solid 2px #52b788;
+   
+}
+
+.tab-button:hover{
+    border-bottom: solid 1px #52b788;
+    font-weight: bold;
+    background: rgba(216,243,220,0.4);
+    cursor: pointer;
+}
+
+.active-tab{
+    border: none;
+    background: #D8F3DC;
+    font-weight: bold;
+}

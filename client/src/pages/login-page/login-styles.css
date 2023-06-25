@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    background: #fff;
+}
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.login {
+    grid-column: 2;
+    width: 500px;
+    position: relative;
+    top: 20%;
+    left: 15%;
+    /* background: green; */
+}
+.signup {
+    grid-column: 2;
+    width: 500px;
+    position: relative;
+    top: 10%;
+    left: 15%;
+}
+.login-pic, .signup-pic{
+    /* background: red; */
+    width: 100%;
+    height: 560px;
+    margin-left: 15%;
+}
+.login-pic img, .signup-pic img{
+    width: 100%;
+    transform: translateY(10%);
+}
+
+.input-container {
+    margin: auto;
+    margin-top: -10px;
+    /* background: pink; */
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px 0px; 
+    border-top: 0.5px solid #d3d3d3;
+    border-bottom: 0.5px solid #d3d3d3;
+}
+
+.input-container input {
+    box-sizing: border-box;
+    height: 45px;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    
+}
+.input-container button {
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    background: #52b788;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.input-container button:hover {
+    background: #40916c;
+    color: #fff;
+    /* border: 0.5px solid black; */
+    cursor: pointer;
+}
+.login h2, .signup h2 {
+    margin-left: 20%;
+    font-family: sans-serif;
+    color: #40916c;
+}
+.login h4, .signup h4 {
+    margin-top: 10px;
+    margin-left: 32%;
+    color: #40916c;
+    font-size: 14px;
+}
+

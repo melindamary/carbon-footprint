@@ -1,0 +1,59 @@
+.landingPage{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    /* overflow: hidden; */
+    width: 100%;
+    margin: 0;
+}
+.description{
+    z-index: -0;
+    width: 800px;
+    grid-column: 1;
+    padding-top: 12%;
+    color: #2d6a4f;
+    font-family: sans-serif;
+}
+.description p{
+    width: 500px;
+    text-align: justify;
+    margin: auto;
+    font-size: 18px;
+    margin-top: 8%;
+    line-height: 28px;
+
+}
+.description span{
+    font-weight: bold;
+    font-size: 20px;
+    /* letter-spacing: 0.5px; */
+}
+.description button{
+    margin-top: 30px;
+    margin-left: 250px;
+    width:300px;
+    height: 45px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    background: #40916c;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+.description button:hover{
+    cursor: pointer;
+    background: #52b788;
+}
+.image{
+    z-index: -2;
+    width: 700px;
+    height: 630px;
+    margin-left: -10%;
+}
+.image img{
+    position: relative;
+    height: 100%;
+    width: 90%;
+    transform: translateY(4%);
+    z-index: -1; 
+}

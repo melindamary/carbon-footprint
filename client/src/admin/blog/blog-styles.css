@@ -1,0 +1,95 @@
+
+.add-post, .blog{
+    gap: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 15px;
+    margin-left: 110px;
+}
+.add-post{
+    margin-left: 300px;
+}
+.blog-heading{
+    margin: auto;
+    height: 30px;
+    text-align: center;
+    align-content: center;
+    font-size: 16px;
+    padding-top: 10px;
+    background: #d8f3dc;
+    /* border: solid 2px  */
+    width: 100%;
+}
+.blog{
+    width: 80%;
+}
+input{
+    height: 30px;
+    width: 578px;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.editor{
+    height: 200px;
+    width: 600px;
+}
+.ck-editor .ck-editor__main .ck-content {
+    min-height: 300px;
+}
+
+.submit-post{
+    height: 35px;
+    width: 150px;
+    width: 62%;
+    border-radius: 8px;
+    border: solid 1px #40916c;
+    color: white;
+    background: #40916c;
+    font-size: 15px;
+    /* margin-left: 210px; */
+    margin-top: 150px;
+}
+.view-posts:hover, .new-posts:hover{
+    background: #40916c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.submit-post:hover{
+    background: rgba(64,145,108,0.9);
+    cursor: pointer;
+}
+.new-posts{
+    background: #b7e4c7;
+    height: 30px;
+    width: 110px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: solid 1px #40916c;
+    color: #1b4332;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.new-posts{
+    margin-bottom: 0px;
+    margin-left: 5%;
+}
+
+.view-posts{
+    margin-left: -96%;
+    height: 37px;
+    width: 37px;
+    margin-top: -8px;
+    background: transparent;
+    border: 1px solid #40916c;
+    color: #40916c;
+    cursor: pointer;
+    padding-top: 5px;
+    border-radius: 30px;
+    padding-right: 6px;
+}
+

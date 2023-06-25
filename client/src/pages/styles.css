@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/** ----------------------------- NAVBAR ----------------------------------------  */
+.navbar-header {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column: span 12;
+    width: 100%;
+    height: 30px;
+    border-bottom: 0.5px solid #d3d3d3;
+    padding: 15px 0px 25px 0px;
+    box-shadow: 0 2px 2px -2px rgba(183,228,199,0.5);
+    font-family: sans-serif;
+    background: #d8f3dc;
+    color: #2d6a4f;
+}
+
+.navbar-logo {
+    background: transparent;
+    margin: 0;
+    grid-column-start: 2;
+    padding-top: 12px;
+    text-align: center;
+    display: flex;
+    gap: 0.1rem;
+    font-size: 14px;
+}
+.navbar-logo img{
+    height: 28px;
+    margin-top: 0%;
+    transform: translateY(-10%);
+}
+.navbar-logo h2{
+    /* background: red; */
+    margin-top:2px;
+}
+nav {
+    grid-column-start: 10;
+    
+    
+}
+nav ul {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav li {
+    list-style: none;
+    
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: green;
+}
+
+.active{
+    color: green;
+    font-weight: bold;
+}
+
+nav a:focus{
+    color: green;
+}
+
+/** ----------------------------- NAVBAR END ----------------------------------------  */
+
+/** ---------------------------------------- FOOTER ------------------------------------------------- */
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  padding-top:15px;
+  border-top: 0.5px solid rgba(211, 211, 211,0.5);
+  color: #1b4332;
+  font-family: sans-serif;
+  font-size: 14px;
+  background: transparent;
+}
+
+
+/** -------------------------------------- FOOTER --------------------------------------------------- */
+
+
+/* *----------------------------- SIGNUP FORM ----------------------------------------  */
+.signup-form{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    /* background:pink; */
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.signup-form h3 {
+    margin-left: -80px;
+}
+
+/** ----------------------------- SIGNUP FORM END----------------------------------------  */
+
+/** ----------------------------- LANDING PAGE----------------------------------------  */
+
+.userhome-container {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    gap: 1.5rem;
+}
+
+/** ----------------------------- LANDING PAGE END----------------------------------------  */

@@ -1,0 +1,44 @@
+.category-buttons{
+    display:flex;
+    gap: 0.3rem;
+    margin: auto;
+    width: 600px;
+    margin-top: 5px;
+    margin-left: 60%;
+    /* background: pink; */
+
+}
+.category-buttons button{
+    height: 32px;
+    width: 120px;
+    border: 1px solid;
+    border-radius: 5px;
+    background: #b7e4c7;
+    border: solid 1px #40916c;
+    color: #1b4332;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.category-buttons button:hover{
+    background: #40916c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.category-tabs{
+    margin-top: 0px;
+    width: 80%;
+}
+
+.category-fuel-form{
+    width: 425px;
+}
+.category-fuel-form label, .category-fuel-form input{
+    width: 400px;
+
+}
+.fuel-buttons{
+    margin-left:10%;
+}
