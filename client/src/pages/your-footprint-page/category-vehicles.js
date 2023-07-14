@@ -69,69 +69,69 @@ export const CategoryVehicles = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Your footprint"/>
+            <PageTitle name="Your footprint" back={true} url="/your-footprint"/>
             <div className="content">
-                <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/your-footprint")
-                                            setShowNext(false)
-                     }}><ArrowBackOutlinedIcon/></button>   
-                </div>
-
                 <div className="footprint-category-content">
                     <h3> Emissions From Passenger and Delivery Vehicles</h3>
-                    {
-                        !showNext ?
 
-                    <form className="calculator-form">
-                    <label>Select Vehicle</label> <br />
+                    <form className="calculator-form" >
+
+                    <div className="vehicle-inputs">
+                        <label>Select vehicle:</label> 
                         <select onClick={handleChange}>
-                            <option>--Select--</option>
+                            <option>Select</option>
                             {vehicles.map((item, key) => {
                                 return (
                                     <option key={key} value={item.type}>{item.type}</option>
                                 )
                             })}
                         </select> <br />
-                        <label>Select vehicle size</label> <br />
+                    </div>
+                    <div className="vehicle-inputs">
+                        <label>Select vehicle size:</label> <br />
                         <select onClick={handleChange2} required>
-                            <option>--Select--</option>
+                            <option>Select</option>
                             {vehicleSizes.map((item, key) => {
                                 return (
                                     <option key={key} value={item.size}>{item.size}</option>
                                 )
                             })}
                         </select> <br />
-                        <label>Select fuel type</label> <br />
+                    </div>
+
+                    <div className="vehicle-inputs">
+                        <label>Select fuel type:</label> <br />
                         <select onClick={handleChange3} required>
-                            <option>--Select--</option>
+                            <option>Select</option>
                             {fuelTypes.map((item, key) => {
                                 return (
                                     <option key={key} value={item.fuel}>{item.fuel}</option>
                                 )
                             })}
                         </select> <br />
-
-                        <button onClick={show}>Next</button>
-                    </form>
-                    :
-                    <form className="calculator-form">
-                        <label>Enter number of vehicles</label> <br/>
-                        <input type="number" required
+                    </div>
+                        
+                    <div className="vehicle-inputs">
+                        <label>Enter number of vehicles:</label> <br/>
+                        <input type="number" required style={{height: "25px"}}
                             onChange={(event) => setAmount(event.target.value)}
                         /> <br/>
-
-                        <label>Select average annual mileage (km)</label> <br/>
-                        <input type="number" required
+                    </div>
+                    
+                    <div className="vehicle-inputs">
+                        <label>Select average annual mileage (km):</label> <br/>
+                        <input type="number" required style={{height: "25px"}}
                             onChange={(event) => setMileage(event.target.value)}
                         /> <br/>
+                    </div>
 
                         <div className="footprint-buttons">
-                            <button onClick={show}>Back</button>
+                            {/* <button onClick={show}>Back</button> */}
                             <button onClick={handleSubmit}>Calculate</button>
                         </div>
                         
                     </form>
-                    }
+                    
                 </div>   
             </div>
             

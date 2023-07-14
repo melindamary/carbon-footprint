@@ -6,6 +6,7 @@ import "./charities-styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Donation } from "./donation";
 import { View } from "./view.js";
+import SearchIcon from '@mui/icons-material/Search';
 
 
 export const Charities = () => {
@@ -23,6 +24,7 @@ export const Charities = () => {
     const [organization, setOrganization] = useState("")
     const [organizationUrl, setOrganizationUrl] = useState("")
     const [id, setId] = useState(0);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(()=>{
         Axios.get("/view-active-causes").then(
@@ -48,8 +50,26 @@ export const Charities = () => {
             <SideNav />
             <PageTitle name="Carbon Offset Projects"/>
             <div className="content">
+                <div style={{display: "flex"}}>
+                    <div className="search-bar" style={{marginLeft: "5%"}}>
+                        <SearchIcon className="search-icon" style={{left: "25%"}}/>
+                        <input style={{width: "328px", marginLeft: "18%"}} type='text' placeholder='Search by project or location...'
+                            onChange={(e) => setSearchTerm(e.target.value)} />
+                    </div>
+                    <button className="view-donations-button" onClick={() => {navigate("/my-donations")}}>View Donations</button>
+                </div>
+                
+                
                 <div className="charities-content">
-                    {projects.map((project,key) =>{
+                    {projects.filter((project) => {
+                        if(searchTerm.length>0){
+                            if(project.project_name.toLowerCase().includes(searchTerm.toLowerCase()))
+                            return project;
+                            else if(project.location.toLowerCase().includes(searchTerm.toLowerCase()))
+                            return project;
+                        } 
+                        else return project;
+                    }).map((project,key) =>{
                         return(
                             <>
                             <div key1={key} className="donation-card-design">

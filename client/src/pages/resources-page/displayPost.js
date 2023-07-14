@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import "./resources-style.css";
 import { useNavigate } from "react-router-dom";
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import Axios from 'axios';
 import moment from 'moment';
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 
 export const DisplayPostComponent = (props) => {
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
     const [post, setPost] = useState([]);
 

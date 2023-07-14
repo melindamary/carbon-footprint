@@ -32,11 +32,11 @@ input{
 }
 
 .editor{
-    height: 200px;
+    height: 230px;
     width: 600px;
 }
 .ck-editor .ck-editor__main .ck-content {
-    min-height: 300px;
+    height: 350px;
 }
 
 .submit-post{
@@ -49,7 +49,7 @@ input{
     background: #40916c;
     font-size: 15px;
     /* margin-left: 210px; */
-    margin-top: 150px;
+    margin-top: 180px;
 }
 .view-posts:hover, .new-posts:hover{
     background: #40916c;
@@ -93,3 +93,40 @@ input{
     padding-right: 6px;
 }
 
+.deletePost{
+    width: 220px;
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+   
+}
+.deletePost button{
+    width: 100px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.deletePost button:hover{
+    cursor: pointer;
+    
+}
+.delbtn{
+    background: #d11a2a;
+    border: solid 1px;
+    color: white;
+}
+.cancelbtn{
+    background: grey;
+    /* background: rgb(210,210,210); */
+    color: white;
+}
+.delbtn:hover{
+    background: rgba(209,26,42,0.8);
+}
+.cancelbtn:hover{
+    background: rgba(128,128,128,0.8);
+    color: white;
+}

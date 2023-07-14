@@ -6,9 +6,7 @@ import Axios from 'axios';
 import moment from 'moment';
 import '../../pages/resources-page/resources-style.css';
 
-
 export const DisplayPostComponent = (props) => {
-    const location = useLocation();
     const navigate = useNavigate();
     const [post, setPost] = useState([]);
 

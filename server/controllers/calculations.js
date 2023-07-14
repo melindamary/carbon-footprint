@@ -29,8 +29,9 @@ export const getFootprintCategoryWise = (req, res) => {
 
     db.query("Select sum(user_footprint.calculated_value) AS total, energy_usage.category_id, footprint_category.category_name \
      from user_footprint inner join energy_usage on user_footprint.activity_id = energy_usage.activity_id inner join footprint_category \
-     on footprint_category.category_id = energy_usage.category_id group by category_id order by category_id ",
-      (err, result) => {
+     on footprint_category.category_id = energy_usage.category_id where user_footprint.userid = ? group by category_id order by category_id ",
+     req.params.userid,
+     (err, result) => {
 
         result.forEach(x => {
             if(x.category_id == 1) electricity = x.total;
@@ -55,17 +56,31 @@ export const getFootprintCategoryWise = (req, res) => {
 
 }
 
+//total footprint by category of user
 export const getFootprintCategoryWise2 = (req, res) => {
 
-    db.query("Select sum(user_footprint.calculated_value) AS total, energy_usage.category_id, footprint_category.category_name \
-     from user_footprint inner join energy_usage on user_footprint.activity_id = energy_usage.activity_id inner join footprint_category \
-     on footprint_category.category_id = energy_usage.category_id group by category_id order by category_id ",
+    db.query("Select sum(user_footprint.calculated_value) AS total,\
+             energy_usage.category_id, footprint_category.category_name \
+            from user_footprint inner join energy_usage on user_footprint.activity_id = energy_usage.activity_id inner join footprint_category \
+            on footprint_category.category_id = energy_usage.category_id where user_footprint.userid = ? group by category_id order by category_id ",
+            req.params.userid,
       (err, result) => {
         // console.log(result)
         res.send(result);
       
     })
 
+}
+
+export const getTotalFootprint = (req, res) => {
+    db.query("Select sum(calculated_value) as total from user_footprint where userid = ?", req.params.userid, (err, result) => {
+        if(err) console.log(err);
+        else {
+            const total = result[0].total === null ? 0 : result[0].total;
+            
+           res.send({total});
+        }
+    })
 }
 
 export const getCategory = (req, res) => {

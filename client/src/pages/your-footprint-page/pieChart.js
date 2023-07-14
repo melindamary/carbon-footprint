@@ -36,10 +36,9 @@ export const PieChart = () => {
           console.log(electricity)
         })
 
-        
-        setTotalFootprint(Number(electricity) + Number(water) + Number(fuels) +
-        Number(vehicles) + Number(material));
-        // console.log("total: "+totalFootprint)
+        Axios.get(`/get-total-footprint/${userid}`).then((response) => {
+          setTotalFootprint(response.data.total);
+        })
 
     },[totalFootprint, electricity, water, fuels, vehicles, material]);
 
@@ -119,15 +118,20 @@ export const PieChart = () => {
   return (
     <>
       <div className="pie">
-        <div className="doughnut-center-text">Total kg CO2e<br/>{totalFootprint}</div>
-      </div> 
-      <Doughnut 
+      {totalFootprint === 0 ? 
+      <p style={{marginTop: "100px", marginLeft: "16%"}}>Footprint data for current year not calculated.</p> :
+      <>
+      <div className="doughnut-center-text">Total kg CO2e<br/>{totalFootprint}</div>
+         <Doughnut 
             data={data} 
             options={options} 
             // plugins={[textCenter]} 
             redraw
-      />
-             
+        />
+      </>}
+        
+      </div>   
+      
     </>
   )
 }

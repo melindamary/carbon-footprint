@@ -87,13 +87,21 @@ export const getProjectWiseTransactions = (req, res) => {
     })
 }
 
+export const getUserWiseTransactions = (req, res) => {
+    db.query("Select ROW_NUMBER() OVER (ORDER BY userid) as sno, userid, sum(donated_amount) as total \
+    from offset_transaction group by userid", (err, result) => {
+       res.send(result);
+    })
+}
+
 export const addTransaction = (req, res) => {
 
     const userid = req.body.userid;
     const projectid = req.body.projectid;
-    const amount = req.body.amount;
-    db.query("Insert into offset_transaction(userid, project_id, donated_amount, offset_date) \
-    values (?,?,?,CURDATE())",[userid, projectid, amount], (err, result) => {
+    const amount = req.body.amount; //donated amount
+    const offset = amount/164;  //1kg CO2e = $2 = 2*82 rupees
+    db.query("Insert into offset_transaction(userid, project_id, donated_amount, offset_amount, offset_date) \
+    values (?,?,?,?,CURDATE())",[userid, projectid, amount, offset], (err, result) => {
         console.log("Inserted successfully");
     })
 }

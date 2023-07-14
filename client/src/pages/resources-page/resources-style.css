@@ -69,6 +69,12 @@
     padding: 2px 50px;
 }
 
+.blog-content img{
+    height: 50%;
+    width: 50%;
+    z-index: 0;
+}
+
 .post-content{
     margin: auto;
     text-align: center;
@@ -118,4 +124,25 @@
 .backbutton:hover{
     background-color: rgba(0,0,0,0.1);
     cursor: pointer;
+}
+
+.search-bar{
+    margin-left: 8%;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+.search-bar input{
+    border-radius: 5px;
+    width: 260px;
+}
+.search-bar input:focus{
+    border: solid 1px black;
+}
+
+.search-icon{
+    position: relative;
+    left: 2.2%;
+    top: 3px;
+    color: rgb(168,166,166);
+
 }

@@ -53,18 +53,15 @@ export const CategoryMaterials = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Your footprint"/>
+            <PageTitle name="Your footprint" back={true} url="/your-footprint"/>
             <div className="content">
-                <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/your-footprint")}}><ArrowBackOutlinedIcon/></button>   
-                </div>
                 <div className="footprint-category-content">
                     <h3>Emissions From Material Use </h3>
 
                     <form className="calculator-form">
-                        <label>Select Activity</label> <br />
+                        <label>Select activity:</label> <br />
                         <select onChange={handleChange}>
-                            <option>--Select--</option>
+                            <option>Select</option>
                             {materialActivities.map((activity, key) => {
                                 return (
                                     <option key={key} value={activity.material_activity}>{activity.material_activity}</option>
@@ -72,9 +69,9 @@ export const CategoryMaterials = () => {
                             })}
                         </select> <br />
 
-                        <label>Select Material</label> <br />
+                        <label>Select material:</label> <br />
                         <select onClick={(event) => setSelectedMaterial(event.target.value)}>
-                            <option>--Select--</option>
+                            <option>Select</option>
                             {materials.map((material, key) => {
                                 return (
                                     <option key={key} value={material.activity_item}>{material.activity_item}</option>
@@ -83,7 +80,7 @@ export const CategoryMaterials = () => {
 
                         </select> <br />
 
-                        <label>Amount used in tonnes</label> <br />
+                        <label>Amount used in tonnes:</label> <br />
                         <input type="number" name="units" required
                             onChange={(event) => setAmount(event.target.value)}
                         /> <br/>

@@ -6,75 +6,93 @@ import { useState } from "react";
 import Axios from 'axios';
 import { Footer } from "../footer";
 import image from "../../assets/images/pic1.jpg"
+import { useForm } from "react-hook-form";
+import { yupResolver} from '@hookform/resolvers/yup'
+import * as yup from 'yup';
+
 
 export const Signup = () => {
     const[name, setName] = useState("");
     const[email, setEmail] = useState("");
-    const[organization, setOrganization] = useState("");
-    const[country, setCountry] = useState("");
+    // const[organization, setOrganization] = useState("");
+    const[location, setLocation] = useState("");
     const[password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const schema = yup.object().shape({
+        name: yup.string().matches(/^[aA-zZ\s]+$/, "Name must include alphabets only").required("Organization name required"),
+        email: yup.string().email("Please enter valid email. eg: abc@example.com").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).required("Organization email required"),
+        location: yup.string().required("Location required"),
+        password: yup.string().min(8, "Password must be atleast 8 characters").max(20).required("*Password required"),
+        confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match").required("Please confirm password"),
+    });
+    const { register, handleSubmit, formState: {errors} } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     const navigate = useNavigate();
 
     const signup = async (event) => {
-        event.preventDefault();  //to prevent the page being redirected automatically
+        // event.preventDefault();  //to prevent the page being redirected automatically
         const response = await Axios.post("/signup", {
             name: name,
             email: email,
-            organization: organization,
-            country: country,
+            location: location,
             password: password,
         });
-        console.log(response.data);
+        setError(response.data);
         if(response.data === "User has been created")
                 navigate("/login");
 
-        // console.log(name, email, organization, country, password);
+        console.log(name, email,location, password);
+        // console.log(data.name);
     };
+    
     
     return (
         <>
             <Navbar />
             <div className="login-page">
                 <div className="signup-pic">
-                    <img src={image} alt="environment picture"/>
+                    <img src={image} alt="environment"/>
                 </div>
                 <div className="signup"> 
                     <h2>Create your account</h2>
-                    <form onSubmit = {signup}>
+
+                    <form onSubmit = {handleSubmit(signup)}>
                         <div className="input-container">
-                            <input type="text" required placeholder="Name" 
+                            <span className="error-msg">{errors.name?.message}</span>
+                            <input type="text" placeholder="Organization name" {...register("name")}
                                 onChange={(event) =>{
                                     setName(event.target.value);
                                 }}/>
-
-                            <input type="email" required placeholder="Email address"
+                            
+                            <span className="error-msg">{errors.email?.message}</span>
+                            <input placeholder="Email address" {...register("email")}
                                 onChange={(event) =>{
                                     setEmail(event.target.value);
                                 }}
                             />
 
-                            <input type="text" required placeholder="Organization"
+                            <span className="error-msg">{errors.location?.message}</span>
+                            <input type="text" placeholder="Location" {...register("location")}
                                 onChange={(event) =>{
-                                    setOrganization(event.target.value);
+                                    setLocation(event.target.value);
                                 }}
                             />
-
-                            <input type="text" required placeholder="Country"
-                                onChange={(event) =>{
-                                    setCountry(event.target.value);
-                                }}
-                            />
-
-                            <input type="password" required placeholder="Password"
+                            
+                            <span className="error-msg">{errors.password?.message}</span>
+                            <input type="password" placeholder="Password" {...register("password")}
                                 onChange={(event) =>{
                                     setPassword(event.target.value);
                                 }}
                             />
 
-                            {/* <input type="password" required placeholder="Confirm Password"/> */}
-                
+                            <span className="error-msg">{errors.confirmPassword?.message}</span>
+                            <input type="password" placeholder="Confirm Password" {...register("confirmPassword")}/>
+
                             <button>Sign Up</button>
+                            <span className="error-msg" style={{margin: "auto", marginTop: "0px"}}>{error? error: null}</span>
                         </div>
                         <h4>Already a member? <Link to="/login">Login</Link></h4>
                     </form>

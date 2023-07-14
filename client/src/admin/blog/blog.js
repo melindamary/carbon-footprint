@@ -8,7 +8,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
-export const Blog = () => {
+export const BlogComponent = () => {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
   const navigate = useNavigate();
@@ -27,14 +27,8 @@ export const Blog = () => {
     <>
         <div className="home">
             <SideNav/>
-            <PageTitle name="Resources"/>
+            <PageTitle name="Resources" back={true} url="/view-posts"/>
             <div className="content">
-
-                <div className="blog-heading">
-                  <button className='view-posts'
-                      onClick={() => { navigate("/view-posts"); }}
-                    > <ArrowBackOutlinedIcon /></button>
-                </div>
                 <form className='add-post' onSubmit={handleSubmit}>
                   <label htmlFor='title'>Title</label>
                   <input value={title} type="text" name='title' required placeholder='Title...'
@@ -55,7 +49,7 @@ export const Blog = () => {
                     />
                   </div>
 
-                  <button className='submit-post'> Create Post</button>
+                  <button className='submit-post'>{}</button>
                   </form>
             </div>   
         </div>  

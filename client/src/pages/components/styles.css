@@ -39,6 +39,7 @@ body {
     position: sticky;
     top:0;
     color: #40916c;
+    display: flex;
 }
 
 .content {
@@ -46,6 +47,27 @@ body {
     grid-column: 3/span 12;
     width: 98%;
     height: auto;
+}
+
+.back-button{
+    height: 37px;
+    width: 37px;
+    margin-top: 13px;
+    margin-right: 5px;
+    background: transparent;
+    border: none;
+    /* border: 1px solid #40916c; */
+    color: #40916c;
+    cursor: pointer;
+    padding-top: 5px;
+    border-radius: 30px;
+    padding-right: 6px;
+    margin-left: -12px;
+}
+.back-button:hover{
+    /* background: #40916c; */
+    color: gray;
+    border-radius: 30px;
 }
 
 /** ----------------------------- REGISTERED USER HOME PAGE----------------------------------------  */

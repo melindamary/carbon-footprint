@@ -108,3 +108,26 @@
 .tip-desc{
     text-align: center;
 }
+.tip-close{
+    position:absolute;
+    top: 6%;
+    left: 92%;
+    background:color;
+    color: white;
+    background: transparent;
+    border: none;
+}
+.tip-close:hover{
+    cursor: pointer;
+    color: #dedede;
+}
+.tip-dialog-body{
+    height: 300px;
+}
+.tip-dialog-body p{
+    margin: auto;
+    margin-top: 5%;
+    /* font-family: sans-serif; */
+    font-size: 17px;
+    
+}

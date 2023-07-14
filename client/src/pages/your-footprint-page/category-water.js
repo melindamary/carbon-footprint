@@ -35,15 +35,12 @@ export const CategoryWater = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Your footprint"/>
+            <PageTitle name="Your footprint" back={true} url="/your-footprint"/>
             <div className="content">
-                <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/your-footprint")}}><ArrowBackOutlinedIcon/></button>   
-                </div>
                 <div className="footprint-category-content">
                     <h3>Emissions From Water Supply</h3>
                     <form className="calculator-form">
-                        <label>Water used in cubic metres (m<sup>3</sup>)</label> <br/>
+                        <label>Water used in cubic metres (m<sup>3</sup>):</label> <br/>
                         <input type="number" name="water-units" required
                              onChange={(event) => {
                                 setAmount(event.target.value);

@@ -39,15 +39,12 @@ export const CategoryFuels = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Your footprint"/>
+            <PageTitle name="Your footprint" back={true} url="/your-footprint"/>
             <div className="content">
-                <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/your-footprint")}}><ArrowBackOutlinedIcon/></button>   
-                </div>
                 <div className="footprint-category-content">
                     <h3> Emissions From Primary Fuel Sources Combusted</h3>
                     <form className="calculator-form">
-                        <label>Select fuel used</label> <br/>
+                        <label>Select fuel used:</label> <br/>
                         <select 
                             onChange={(event) => setActivity(event.target.value)}>
                             <option>Select</option>
@@ -58,7 +55,7 @@ export const CategoryFuels = () => {
                                 )
                             })}
                         </select> <br />
-                        <label>Amount used in Litres</label> <br />
+                        <label>Amount used in litres:</label> <br />
                         <input type="number" name="fuel-units" required
                             onChange={(event) => setAmount(event.target.value)}
                         /> <br/>

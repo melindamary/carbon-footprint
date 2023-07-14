@@ -44,19 +44,26 @@ import { AdminTips } from "./admin/tips/view-tips.js";
 import { ViewTip } from "./pages/tips-page/view-tip.js";
 import { CategoryBusinessTrips } from "./pages/your-footprint-page/category-business.js";
 import { Categories } from "./admin/footprint/category.js";
+import { EditPost } from "./admin/blog/editPost.js";
+import { NewPost } from "./admin/blog/newPost.js";
 
 function App() {
   
-  const [authState, setAuthState] = useState(true); //authState is a boolean 
+  const [authState, setAuthState] = useState(false); //authState is a boolean 
   const [cookies, ] = useCookies(["access_token"]);
 
   useEffect(() => {
-    if(cookies["access_token"])
+    if(cookies["access_token"] != '')
     {
-      console.log("hey");
+      console.log("hey"+cookies["access_token"]);
       setAuthState(true);
     }
-    else setAuthState(false);
+    else if(cookies["access_token"] == '') 
+    {
+      console.log("bye")
+      setAuthState(false);
+    }
+      
 
   }, []);
 
@@ -78,7 +85,6 @@ function App() {
             <Route path="/impact-tracker" element={<ImpactTracker />} />
 
             <Route path="/tips" element={<Tips />} />
-            <Route path="/view-tip" element={<ViewTip />} />
 
             <Route path="/charities" element={<Charities />} />
             <Route path="/donate" element={<Donation />} />
@@ -88,8 +94,6 @@ function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/read-post" element={<ReadPost />} />
-
-            
 
             <Route path="/category-water" element={<CategoryWater />} />
             <Route path="/category-electricity" element={<CategoryElectricity />} />
@@ -101,9 +105,12 @@ function App() {
 
             <Route path="/admin-home" element={<AdminHome/>}/>
             <Route path="/user-info" element={<Users />} />
-            <Route path="/blog" element={<Blog />} />
+
+            <Route path="/new-post" element={<NewPost />} />
+            <Route path="/edit-post" element={<EditPost />} />
             <Route path="/view-posts" element={<ViewPosts />} />
             <Route path="/read-post-admin" element={<ReadPostAdmin />} />
+            
             <Route path="/causes" element={<OffsetProjects />} />
             <Route path="/donation-info" element={<DonationInfo />} />
             <Route path="/categories" element={<Categories />} />

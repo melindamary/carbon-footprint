@@ -13,7 +13,7 @@ export const Users = () => {
         {field: 'userid', headerName: 'User ID', width: 100},
         {field: 'name', headerName: 'Name', width: 180},
         {field: 'email', headerName: 'Email', width: 220},
-        {field: 'country', headerName: 'Country', width: 200},
+        {field: 'location', headerName: 'Location', width: 200},
         {field: 'join_date', headerName: 'Join Date', width: 140, renderCell: params=>moment(params.row.join_date).format('DD-MM-YYYY')},
     ];
     const [pageSize, setPageSize] = useState(5);

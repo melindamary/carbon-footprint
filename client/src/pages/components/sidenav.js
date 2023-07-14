@@ -21,10 +21,16 @@ export const SideNav = () => {
     
     const SidebarData = [
         {
-            title: 'Measure',
+            title: 'Calculate',
             icon: earth,
             link: '/your-footprint',
             alt: 'footprint-icon'
+        },
+        {
+            title: 'Reports',
+            icon: dashboard,
+            link: '/home',
+            alt: 'dashboard-icon'
         },
         {
             title: 'Footprint',
@@ -45,23 +51,11 @@ export const SideNav = () => {
             alt: 'tips',
         },
         // {
-        //     title: 'Donations',
-        //     icon: heart,
-        //     link: '/my-donations',
-        //     alt: 'charities-icon'
+        //     title: 'Leaderboard',
+        //     icon: trophy,
+        //     link: '/leaderboard',
+        //     alt: 'leaderboard-icon'
         // },
-        {
-            title: 'Leaderboard',
-            icon: trophy,
-            link: '/leaderboard',
-            alt: 'leaderboard-icon'
-        },
-        {
-            title: 'Reports',
-            icon: dashboard,
-            link: '/home',
-            alt: 'dashboard-icon'
-        },
         {
             title: 'Resources',
             icon: book,

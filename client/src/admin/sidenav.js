@@ -56,12 +56,12 @@ export const SideNav = () => {
             link: '/admin-tips',
             alt: 'tips',
         },
-        {
-            title: 'Leaderboard',
-            icon: trophy,
-            link: '/admin-leaderboard',
-            alt: 'leaderboard-icon'
-        },
+        // {
+        //     title: 'Leaderboard',
+        //     icon: trophy,
+        //     link: '/admin-leaderboard',
+        //     alt: 'leaderboard-icon'
+        // },
         {
             title: 'Resources',
             icon: book,

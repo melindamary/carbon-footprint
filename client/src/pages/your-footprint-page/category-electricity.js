@@ -38,15 +38,12 @@ export const CategoryElectricity = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Your footprint"/>
+            <PageTitle name="Your footprint" back={true} url="/your-footprint"/>
             <div className="content">
-                <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/your-footprint")}}><ArrowBackOutlinedIcon/></button>   
-                </div>
                 <div className="footprint-category-content">
                     <h3>Emissions From Energy Usage </h3>
                     <div className="calculator-form">
-                        <label htmlFor="electricity-units">Enter electricity generated in kWh</label> <br/>
+                        <label htmlFor="electricity-units">Enter electricity generated in kWh:</label> <br/>
                         <input type="number" name="electricity-units" required
                             onChange={(event) => {
                                 setAmount(event.target.value);

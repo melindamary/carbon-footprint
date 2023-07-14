@@ -1,10 +1,10 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { SideNav } from "../components/sidenav";
-import { PageTitle } from "../components/page-title";
+// import { PageTitle } from "../components/page-title";
 import "./resources-style.css";
-import { useNavigate } from "react-router-dom";
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+// import { useNavigate } from "react-router-dom";
+// import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { DisplayPostComponent } from './displayPost';
 
 export const ReadPost = () => {

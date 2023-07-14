@@ -29,3 +29,13 @@ export const deletePost = (req, res) => {
             res.send("Deleted successfully")
         })
 }
+
+export const editPost = (req, res) => {
+    const id = req.body.id;
+    const title = req.body.title;
+    const content = req.body.content;
+    db.query("Update post set post_title= ?, post_content=? where post_id=?", [title, content, id], (err, result)=>{
+        if(err) console.log(err);
+        else console.log("Updated!");
+    })
+}

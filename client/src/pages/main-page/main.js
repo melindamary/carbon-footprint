@@ -19,7 +19,7 @@ export const Main = () => {
                     <button onClick={() => navigate("/signup")}>Get Started</button>
                 </div>
                 <div className="image">
-                    <img src={pic1}/>
+                    <img src={pic1} alt="Ecofriendly graphic"/>
                 </div>
             </div>
             <Footer />

@@ -11,35 +11,37 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import pic1 from './vehicles.jpg';
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 
-export const ViewTip = () => {
+
+export const ViewTip = (props) => {
     
+    const {openPopup, setOpenPopup, id, title, desc, color, category} = props;
+    const handleSubmit = () => {
+        setOpenPopup(false);
+    }
     const [tip, setTip] = useState([]);
     const navigate = useNavigate();
-    const id = useLocation().state.id;
-    const bgcolor = useLocation().state.bgcolor;
-    const title = useLocation().state.title;
-    const category = useLocation().state.category;
-    const desc = useLocation().state.desc;
-    
-    // useEffect(() => {
-    //     Axios.get("get-tips").then((response) => {
-    //        setTips(response.data);
-    //     })
-    // },[])
+   
     return (
         <>
-        <div className="home">
-            <SideNav />
-            <div className="content">
-                <div className="view-tip-heading" style={{backgroundColor: bgcolor,}}>
-                    <button className="tip-button" onClick={() => navigate("/tips")}><ArrowBackOutlinedIcon fontSize="small" /></button>
-                    <h3>{title}</h3>
-                    <span className="category-name" style={{width: "100px", marginLeft: "45.5%", marginTop:"10px"}}>{category}</span>
+            <Dialog open={openPopup} style={{marginTop:"-50px"}}>
+                <DialogTitle style={{background:color, textAlign: "center",}}>
+                <div style={{color: "white"}} >
+                 {title}
+                <button className='tip-close' onClick={handleSubmit}><ClearIcon style={{fontSize: "large", }}/></button>
                 </div>
-                <p className="tip-desc">{desc}</p>
-            </div>   
-        </div>  
+
+                </DialogTitle>
+                <DialogContent dividers style={{background:"#EBEEEE"}}>
+                <div className="donation-page tip-dialog-body">
+                    <p> 
+                        {desc}
+                    </p>
+                </div> 
+            </DialogContent>
+            </Dialog>
         </>
         
     );

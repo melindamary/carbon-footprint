@@ -22,23 +22,30 @@ export const DisplayFootprint = () => {
     }
 
     useEffect(() => {
-        Axios.get(`/categorywise-footprint2/${userid}`).then((response) => {
-            console.log(response.data);
-            setFootprints(response.data);
-            Axios.get(`/fuel-details/${userid}`).then((response) => {
-                setFuelDetails(response.data);
-                Axios.get(`/vehicle-details/${userid}`).then((response) =>{
-                    setVehicleDetails(response.data)
-                    Axios.get(`/categorywise-footprint/${userid}`).then((response) => {
-                        setFootprintTotal(response.data.total);
-                        Axios.get(`/material-details/${userid}`).then((response) =>{
-                            setMaterialDetails(response.data)
-                        })
-                    })
-                })
-            })
-        })
-        
+
+        const fetchData = async (userid) => {
+            try {
+              const footprintsResult = await Axios.get(`/categorywise-footprint2/${userid}`);
+              console.log(footprintsResult.data);
+              setFootprints(footprintsResult.data);
+          
+              const fuelResult = await Axios.get(`/fuel-details/${userid}`);
+              setFuelDetails(fuelResult.data);
+          
+              const vehicleResult = await Axios.get(`/vehicle-details/${userid}`);
+              setVehicleDetails(vehicleResult.data);
+          
+              const total = await Axios.get(`/get-total-footprint/${userid}`);
+              setFootprintTotal(total.data.total);
+          
+              const response5 = await Axios.get(`/material-details/${userid}`);
+              setMaterialDetails(response5.data);
+            } catch (error) {
+              // Handle any errors
+            }
+          };
+          
+          fetchData(userid);
         
     }, []);
 

@@ -48,18 +48,11 @@ export const Footprint = () => {
             
         },
         {
-            title: '',
-            icon: '',
+            title: 'Business trips',
+            icon: <LocalAirportOutlinedIcon style={{fontSize: '30px'}}/>,
             link: '',
             
         },
-
-        // {
-        //     title: 'Business trips',
-        //     icon: <LocalAirportOutlinedIcon style={{fontSize: '30px'}}/>,
-        //     link: '/category-business-trips',
-            
-        // },
         
 
     ];

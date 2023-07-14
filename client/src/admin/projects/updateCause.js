@@ -17,7 +17,7 @@ export const Edit = (props) => {
 
     useEffect(() => {
         Axios.get(`/view-cause/${id}`).then((response) => {
-            /* console.log(response.data[0]); */
+           console.log(response.data[0]); 
            setName(response.data[0].project_name)
            setAbout(response.data[0].project_description)
            setLocation(response.data[0].location)

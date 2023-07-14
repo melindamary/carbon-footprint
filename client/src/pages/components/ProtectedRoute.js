@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import {Outlet, Navigate} from "react-router-dom";
 import { AuthContext, UserContext } from '../../context/Context';
+import { Login } from '../login-page/login';
 
 function PrivateRoutes() {
 
@@ -21,7 +22,7 @@ function PrivateRoutes() {
  
   return (
 
-    authState ? <UserContext.Provider value={{user, setUser}}><Outlet/></UserContext.Provider> : <Navigate to="/login"/>
+    authState ? <UserContext.Provider value={{user, setUser}}><Outlet/></UserContext.Provider> : <Login />
   )
 }
 

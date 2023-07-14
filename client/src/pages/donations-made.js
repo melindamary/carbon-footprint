@@ -34,12 +34,9 @@ export const MyDonations = () => {
         <>
         <div className="home">
             <SideNav />
-            <PageTitle name="Donations"/>
+            <PageTitle name="Donations" back={true} url={"/charities"}/>
             
             <div className="content">
-            <div className="calculator-heading footprint-heading">
-                     <button onClick={() => {navigate("/home")}}><ArrowBackOutlinedIcon/></button>   
-                </div>
                 <div className="donations-table">
                     
                     <DataGrid
