@@ -22,7 +22,7 @@ export const ViewPosts = () => {
 
     const viewPost = (postId) => {
         navigate("/read-post-admin", {state: {id: postId, link: "/view-posts"}});
-    }
+    };
 
     useEffect(() => {
         Axios.get("/view-post").then((response) => {

@@ -42,7 +42,7 @@ export const CategoryElectricity = () => {
             <div className="content">
                 <div className="footprint-category-content">
                     <h3>Emissions From Energy Usage </h3>
-                    <div className="calculator-form">
+                    <form className="calculator-form" onSubmit={handleSubmit}>
                         <label htmlFor="electricity-units">Enter electricity generated in kWh:</label> <br/>
                         <input type="number" name="electricity-units" required
                             onChange={(event) => {
@@ -50,8 +50,8 @@ export const CategoryElectricity = () => {
                             }}
                         /> <br/>
 
-                        <button onClick={handleSubmit}>Calculate</button>
-                    </div>
+                        <button type="submit">Calculate</button>
+                    </form>
                 </div>   
             </div>
             

@@ -19,14 +19,14 @@ export const PieChart = () => {
   
     const [category, setCategory] = useState([]);
     const userid = (JSON.parse(localStorage.getItem("user"))).userid;
-    
+    const [year, setYear] = useState(new Date().getFullYear());
+
     useEffect(() => {
-        
         Axios.get("/category").then((response) => {
           setCategory(response.data);
         })
 
-        Axios.get(`/categorywise-footprint/${userid}`).then((response) => {
+        Axios.get(`/categorywise-footprint/${userid}&${year}`).then((response) => {
           // console.log(response.data);
           setElectricity(response.data.electricity);
           setWater(response.data.water);
@@ -36,7 +36,7 @@ export const PieChart = () => {
           console.log(electricity)
         })
 
-        Axios.get(`/get-total-footprint/${userid}`).then((response) => {
+        Axios.get(`/get-total-yearly-footprint/${userid}&${year}`).then((response) => {
           setTotalFootprint(response.data.total);
         })
 

@@ -10,4 +10,11 @@ export const getOffsetReport = (req, res) => {
             res.send({offset, count});
         }
     })
-}
+};
+
+export const totalActions = (req, res) => {
+    db.query("Select COUNT(*) as count from user_action where userid = ? ", req.params.userid, (err, result) =>{
+        if(err) console.log(err);
+        res.send(result);
+    })
+};

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import Axios from 'axios';
@@ -11,12 +11,19 @@ export const AddAction = (props) => {
     const [category, setCategory] = useState('')
     const [desc, setDesc] = useState('')
 
-    const [cat, setCat] = useState(["Electricity", "Water", "Vehicles"])
+    const [categoryList, setCategoryList] = useState([]);
+
+    useEffect(() => {
+        Axios.get('/get-categoryNames').then((response) => {
+           setCategoryList(response.data)
+        });
+    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setAddTipPopup(false);
-    }
+    };
+
     const add = (event) => {
         event.preventDefault();
         console.log(title, category, desc);
@@ -29,7 +36,7 @@ export const AddAction = (props) => {
         })
         setAddTipPopup(false);
         
-    }
+    };
 
   return (
     <div>
@@ -49,9 +56,9 @@ export const AddAction = (props) => {
                 <label htmlFor="">Category</label>
                 <select className='dropdown-field' onChange={(event) => setCategory(event.target.value)}>
                     <option>Select</option>
-                    {cat.map((value, key) => {
+                    {categoryList.map((value, key) => {
                         return(
-                            <option>{value}</option>
+                            <option>{value.category_name}</option>
                         )
                     })}
                     

@@ -11,12 +11,12 @@ import { checkoutSession } from "./controllers/checkout-session.js";
 import { userInfo } from "./controllers/users.js";
 import { createPost, viewPost, displayPost, deletePost, editPost } from "./controllers/blog.js";
 import { DisableCause, EnableCause, addCause, addCauses, addTransaction, getAllTransactions, getProject, getProjectWiseTransactions, getTransactions, getUserWiseTransactions, updateCause, viewActiveCauses, viewCause, viewInactiveCauses,} from "./controllers/offset-projects.js";
-import { getEmissions, getFootprint, getFootprintCategoryWise, getCategory, getFuels, addFootprint, getMaterialActivity, getMaterial, addMaterialFootprint, getFootprintCategoryWise2, getVehicles, getVehicleSize, getFuelType, addVehicleFootprint, getFuelDetails, getVehicleDetails, getMaterialDetails, getTotalFootprint } from "./controllers/calculations.js";
+import { getEmissions, getFootprint, getFootprintCategoryWise, getCategory, getFuels, addFootprint, getMaterialActivity, getMaterial, addMaterialFootprint, getFootprintCategoryWise2, getVehicles, getVehicleSize, getFuelType, addVehicleFootprint, getFuelDetails, getVehicleDetails, getMaterialDetails, getTotalFootprint, getCategoryNames, getTotalYearlyFootprint } from "./controllers/calculations.js";
 import { adminDashboard } from "./controllers/admin.js";
 import { adminLeaderboard } from "./controllers/leaderboard.js";
-import { addTip, getTips, updateTip, viewTip, viewTips } from "./controllers/tips.js";
-import { addEmissionsFuel, addEmissionsMaterial, addEmissionsVehicle, deleteFuel, deleteMaterial, deleteVehicle, getEmissionsInfo, getMaterialsInfo, getVehiclesInfo } from "./controllers/emissions.js";
-import { getOffsetReport } from "./controllers/userReports.js";
+import { addTip, commitAction, deleteAction, getTips, isCommitAction, myTipCount, myTips, updateTip, viewTip, viewTips } from "./controllers/tips.js";
+import { addEmissionsFuel, addEmissionsMaterial, addEmissionsVehicle, deleteFuel, deleteMaterial, deleteVehicle, getEmissionsInfo, getMaterialsInfo, getVehiclesInfo, updateEmissions } from "./controllers/emissions.js";
+import { getOffsetReport, totalActions } from "./controllers/userReports.js";
 
 const app = express();  
 const port = 3002;
@@ -71,7 +71,7 @@ app.post('/api/upload-image', upload.single('image'), (req, res) => {
 // * Users page - admin
     app.get('/api/user-info', userInfo);
 
-// *Resources page - admin
+// *Resources (Blog) page - admin
     app.post('/api/create-blog', createPost);
     app.get('/api/view-post', viewPost);
     app.get('/api/display-post/:id', displayPost);
@@ -101,10 +101,11 @@ app.post('/api/upload-image', upload.single('image'), (req, res) => {
     app.get('/api/energy-emissions/:activity', getEmissions);
 
     app.get('/api/user-footprint/:userid', getFootprint);
-    app.get('/api/categorywise-footprint/:userid', getFootprintCategoryWise); //returns json
-    app.get('/api/categorywise-footprint2/:userid', getFootprintCategoryWise2); //returns array
+    app.get('/api/categorywise-footprint/:userid&:year', getFootprintCategoryWise); //returns json
+    app.get('/api/categorywise-footprint2/:userid&:year', getFootprintCategoryWise2); //returns array
     app.get('/api/category', getCategory);
     app.get('/api/get-total-footprint/:userid', getTotalFootprint);
+    app.get('/api/get-total-yearly-footprint/:userid&:year', getTotalYearlyFootprint);
 
     app.get('/api/fuels', getFuels);
     app.post('/api/add-footprint', addFootprint);
@@ -114,16 +115,17 @@ app.post('/api/upload-image', upload.single('image'), (req, res) => {
     app.post('/api/add-material-footprint', addMaterialFootprint);
 
     app.get('/api/get-vehicles', getVehicles);
-    app.get('/api/get-vehicle-size', getVehicleSize);
-    app.get('/api/get-fuel-type', getFuelType);
+    app.get('/api/get-vehicle-size/', getVehicleSize);
+    app.get('/api/get-fuel-type/', getFuelType);
     app.post('/api/add-vehicle-footprint', addVehicleFootprint);
 
-    app.get('/api/fuel-details/:id', getFuelDetails);
-    app.get('/api/vehicle-details/:id', getVehicleDetails);
-    app.get('/api/material-details/:id', getMaterialDetails);
+    app.get('/api/fuel-details/:id&:year', getFuelDetails);
+    app.get('/api/vehicle-details/:id&:year', getVehicleDetails);
+    app.get('/api/material-details/:id&:year', getMaterialDetails);
 
 // * User Reports
     app.get('/api/get-total-offset/:userid', getOffsetReport);
+    app.get('/api/get-totalActions/:userid', totalActions);
 
 // * Admin Dashboard
     app.get("/api/admin-dashboard", adminDashboard);
@@ -132,12 +134,18 @@ app.post('/api/upload-image', upload.single('image'), (req, res) => {
     app.get("/api/admin-leaderboard", adminLeaderboard);
 
 
-// * Tips
+// * Tips (Admin and user)
     app.post("/api/add-tip", addTip);
     app.get("/api/view-tips", viewTips);
     app.get("/api/view-tip/:id", viewTip);
     app.put("/api/update-tip", updateTip);
     app.get("/api/get-tips", getTips);
+    app.post("/api/commit-action", commitAction);
+    app.get("/api/isCommit/:userid&:id", isCommitAction);
+    app.delete("/api/delete-action/:userid&:id", deleteAction);
+    app.get(`/api/get-mytips/:userid`, myTips);
+    app.get(`/api/get-mytipcount/:userid`, myTipCount);
+    app.get('/api/get-categoryNames',getCategoryNames);
 
 // * Category Emissions in Admin
     app.get("/api/emissions-info", getEmissionsInfo);
@@ -151,6 +159,8 @@ app.post('/api/upload-image', upload.single('image'), (req, res) => {
     app.delete('/api/delete-fuel/:id', deleteFuel);
     app.delete('/api/delete-vehicle/:id', deleteVehicle);
     app.delete('/api/delete-material/:id', deleteMaterial);
+
+    app.put('/api/update-emission-energy', updateEmissions);
 
 // * the server is running on the specified port
     app.listen(port, () => {

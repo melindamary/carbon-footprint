@@ -78,7 +78,7 @@ export const AdminHome = () => {
                         <li>Fuels combusted</li>
                         <li>Materials used</li>
                         <li>Passenger and delivery vehicles</li>
-                        <li>Business Trips</li>
+                        {/* <li>Business Trips</li> */}
                       </ul>
                     </div>
                     <span className='note2'>

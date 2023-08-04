@@ -18,11 +18,41 @@ import ClearIcon from '@mui/icons-material/Clear';
 export const ViewTip = (props) => {
     
     const {openPopup, setOpenPopup, id, title, desc, color, category} = props;
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+    const userid = JSON.parse(localStorage.getItem("user")).userid;
+
     const handleSubmit = () => {
         setOpenPopup(false);
+    };
+
+    useEffect(() => {
+        console.log(id, userid)
+        const fetchData = async () => {
+        const response = await Axios.get(`/isCommit/${userid}&${id}`);
+        
+        if(response.data) setMessage(response.data.message);
+        }
+        fetchData();
+        console.log("msg:",message);
+    }, [id, message]);
+
+    const handleCommit = (event) => {
+        event.preventDefault();
+
+        if(message === "not exists"){
+            Axios.post('/commit-action', {
+
+                tipid: id,
+                userid: userid
+            }).then(setMessage("exists"));
+        }
+        else if(message === "exists"){
+            Axios.delete(`/delete-action/${userid}&${id}`).then(setMessage("not exists"));
+        }
+        
     }
-    const [tip, setTip] = useState([]);
-    const navigate = useNavigate();
+    
    
     return (
         <>
@@ -39,6 +69,7 @@ export const ViewTip = (props) => {
                     <p> 
                         {desc}
                     </p>
+                    <button className="commit-action-btn" onClick={handleCommit}>{message === "exists" ? "Uncommit Action" : "Commit Action!" }</button>
                 </div> 
             </DialogContent>
             </Dialog>

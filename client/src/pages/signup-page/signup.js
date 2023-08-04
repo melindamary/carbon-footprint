@@ -20,11 +20,11 @@ export const Signup = () => {
     const [error, setError] = useState("");
 
     const schema = yup.object().shape({
-        name: yup.string().matches(/^[aA-zZ\s]+$/, "Name must include alphabets only").required("Organization name required"),
-        email: yup.string().email("Please enter valid email. eg: abc@example.com").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).required("Organization email required"),
+        name: yup.string().required("Organization name required").matches(/^[aA-zZ\s]+$/, "Name must include alphabets only"),
+        email: yup.string().required("Organization email required").email("Please enter valid email. eg: abc@example.com").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Please enter valid email. eg: abc@example.com"),
         location: yup.string().required("Location required"),
-        password: yup.string().min(8, "Password must be atleast 8 characters").max(20).required("*Password required"),
-        confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match").required("Please confirm password"),
+        password: yup.string().required("Password required").min(8, "Password must be atleast 8 characters").max(20),
+        confirmPassword: yup.string().required("Please confirm password").oneOf([yup.ref("password"), null], "Passwords must match"),
     });
     const { register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(schema)

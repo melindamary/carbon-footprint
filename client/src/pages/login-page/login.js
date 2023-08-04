@@ -30,6 +30,7 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const login = async (event) => {
+        // event.preventDefault();
         const response = await Axios.post("/login",{
             email: email,
             password: password

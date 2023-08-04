@@ -10,6 +10,7 @@ export const Edit = (props) => {
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [category, setCategory] = useState('');
+    const [categoryList, setCategoryList] = useState([]);
 
     useEffect(() => {
         Axios.get(`/view-tip/${id}`).then((response) => {
@@ -17,8 +18,12 @@ export const Edit = (props) => {
            setTitle(response.data[0].tip_title)
            setDesc(response.data[0].tip_description)
            setCategory(response.data[0].category_name)
+        });
+
+        Axios.get('/get-categoryNames').then((response) => {
+            setCategoryList(response.data);
         })
-    }, [id])
+    }, [id]);
    
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -57,7 +62,11 @@ export const Edit = (props) => {
 
                 <label htmlFor="category">Category</label>
                 <select className='dropdown-field' value={category} onChange={(e) => {setCategory(e.target.value)}} >
-                    <option>{category}</option>
+                    {categoryList.map((item, value) => {
+                        return (
+                            <option>{item.category_name}</option>
+                        )
+                    })}
 
                 </select> 
 

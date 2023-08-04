@@ -58,10 +58,10 @@ export const CategoryMaterials = () => {
                 <div className="footprint-category-content">
                     <h3>Emissions From Material Use </h3>
 
-                    <form className="calculator-form">
+                    <form className="calculator-form" onSubmit={handleSubmit}> 
                         <label>Select activity:</label> <br />
-                        <select onChange={handleChange}>
-                            <option>Select</option>
+                        <select onChange={handleChange} required>
+                            <option value="">Select</option>
                             {materialActivities.map((activity, key) => {
                                 return (
                                     <option key={key} value={activity.material_activity}>{activity.material_activity}</option>
@@ -70,8 +70,8 @@ export const CategoryMaterials = () => {
                         </select> <br />
 
                         <label>Select material:</label> <br />
-                        <select onClick={(event) => setSelectedMaterial(event.target.value)}>
-                            <option>Select</option>
+                        <select onClick={(event) => setSelectedMaterial(event.target.value)} required>
+                            <option value="">Select</option>
                             {materials.map((material, key) => {
                                 return (
                                     <option key={key} value={material.activity_item}>{material.activity_item}</option>
@@ -84,7 +84,7 @@ export const CategoryMaterials = () => {
                         <input type="number" name="units" required
                             onChange={(event) => setAmount(event.target.value)}
                         /> <br/>
-                        <button onClick={handleSubmit}>Calculate</button>
+                        <button type="submit">Calculate</button>
                     </form>
                 </div>   
             </div>

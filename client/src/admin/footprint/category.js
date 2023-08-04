@@ -11,6 +11,8 @@ import { AddMaterial } from './addMaterial.js';
 import { AddVehicle } from './addVehicle.js';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { EditEmission } from './updateEmission.js';
+import { DeleteEmission } from './deleteEmission.js';
 
 export const Categories = () => {
 
@@ -18,16 +20,27 @@ export const Categories = () => {
     const [emissions, setEmissions] = useState([]);
     const [vehicles, setVehicles] = useState([]);
     const [materials, setMaterials] = useState([]);
-
     const [toggleState, setToggleState] = useState(1);
     const [addFuelPopup, setAddFuelPopup] = useState(false);
     const [addVehiclePopup, setAddVehiclePopup] = useState(false);
     const [addMaterialPopup, setAddMaterialPopup] = useState(false);
 
+    //for edit popup
+    const [editEnergyPopup, setEditEnergyPopup] = useState(false);
+    const [activity, setActivity] = useState('');
+    const [emissionsProp, setEmissionsProp] = useState(0);
+    const [emissionId, setEmissionId] = useState(0);
+
+    //for delete popup
+    const [openDeletePopup, setDeletePopup] = useState(false);
+    const [category, setCategory] = useState('');
+
+
     const toggle = (index) => {
         setToggleState(index);
         console.log(toggleState);
-    }
+    };
+
     useEffect(() => {
         async function fetchData() {
             const emissionsResponse = await Axios.get("/emissions-info");
@@ -44,20 +57,6 @@ export const Categories = () => {
 
     }, [emissions, vehicles, materials]);
 
-    const deleteFuel = (id) => {
-        // console.log(id);
-        Axios.delete(`/delete-fuel/${id}`);
-    }
-    const deleteVehicle = (id) => {
-        // console.log(id);
-        Axios.delete(`/delete-vehicle/${id}`);
-    }
-    const deleteMaterial = (id) => {
-        // console.log(id);
-        Axios.delete(`/delete-material/${id}`);
-    }
-
-
     const columns1 = [
         {field: 'sno', headerName: 'S.No.', width: 150},
         {field: 'activity', headerName: 'Activity', width: 200},
@@ -68,8 +67,10 @@ export const Categories = () => {
                 <>
                 <button className='edit-button'
                     onClick={(event) => {
-                        // setEditPopup(true)
-                        
+                        setEditEnergyPopup(true)
+                        setActivity(params.row.activity);
+                        setEmissionsProp(params.row.emissions);
+                        setEmissionId(params.row.activity_id);
                     }}><EditIcon /></button>
                 </>
             )
@@ -79,8 +80,9 @@ export const Categories = () => {
                 <>
                 <button className='delete-button'
                     onClick={(event) => {
-                        // console.log(params.row.activity_id);
-                        deleteFuel(params.row.activity_id);
+                        setDeletePopup(true);
+                        setCategory(params.row.category);
+                        setEmissionId(params.row.activity_id);
                     }}
                 ><DeleteIcon /></button>
                 </>
@@ -100,8 +102,11 @@ export const Categories = () => {
                 <>
                 <button className='edit-button'
                     onClick={(event) => {
-                        // setEditPopup(true)
-                        
+                        setEditEnergyPopup(true)
+                        setActivity(params.row.activity);
+                        setEmissionsProp(params.row.emissions);
+                        setEmissionId(params.row.activity_id);
+
                     }}><EditIcon /></button>
                 </>
             )
@@ -111,7 +116,9 @@ export const Categories = () => {
                 <>
                 <button className='delete-button'
                     onClick={(event) => {
-                        deleteVehicle(params.row.activity_id);
+                        setDeletePopup(true);
+                        setCategory('Vehicles');
+                        setEmissionId(params.row.activity_id);
                     }}
                 ><DeleteIcon /></button>
                 </>
@@ -129,7 +136,10 @@ export const Categories = () => {
                 <>
                 <button className='edit-button'
                     onClick={(event) => {
-                        // setEditPopup(true)
+                        setEditEnergyPopup(true)
+                        setActivity(params.row.activity);
+                        setEmissionsProp(params.row.emissions);
+                        setEmissionId(params.row.activity_id);
                         
                     }}><EditIcon /></button>
                 </>
@@ -140,7 +150,9 @@ export const Categories = () => {
                 <>
                 <button className='delete-button'
                     onClick={(event) => {
-                        deleteMaterial(params.row.activity_id);
+                        setDeletePopup(true);
+                        setCategory('Material Use');
+                        setEmissionId(params.row.activity_id);
                     }}
                 ><DeleteIcon /></button>
                 </>
@@ -159,13 +171,16 @@ export const Categories = () => {
                     <button onClick={() => setAddVehiclePopup(true)}>Add Vehicle </button>
                     <button onClick={() => setAddMaterialPopup(true)}>Add Material </button>
                 </div>
+
                 <div className="tabs category-tabs">
                     <button className={toggleState === 1 ? "active-tab" : "tab-button"} onClick={() => toggle(1)}>Energy</button>
                     <button className={toggleState === 2 ? "active-tab" : "tab-button"} onClick={() => toggle(2)}>Vehicles</button>
                     <button className={toggleState === 3 ? "active-tab" : "tab-button"} onClick={() => toggle(3)}>Material Use</button>
                     {/* <button className={toggleState === 4 ? "active-tab" : "tab-button"} onClick={() => toggle(4)}></button> */}
                 </div>
-                 <div style={{width: "80%",margin: "auto", height: "500px", justifyContent:'center',}}>
+
+                <div style={{width: "80%",margin: "auto", height: "500px", justifyContent:'center',}}>
+                 
                  {toggleState === 1? 
                     <DataGrid
                         sx={{
@@ -188,8 +203,8 @@ export const Categories = () => {
                         pageSize={pageSize}
                         pageSizeOptions={[5, 10, 20, 50, 100]}
                         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-            
                     /> : <></>}
+
                     {toggleState === 2? 
                         <DataGrid
                         sx={{
@@ -211,11 +226,10 @@ export const Categories = () => {
                         pagination={true}
                         pageSize={pageSize}
                         pageSizeOptions={[5, 10, 20, 50, 100]}
-                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-
-                        
+                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}     
                     />
                     : <></>}
+
                     {toggleState === 3? 
                         <DataGrid
                         sx={{
@@ -238,11 +252,9 @@ export const Categories = () => {
                         pageSize={pageSize}
                         pageSizeOptions={[5, 10, 20, 50, 100]}
                         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-
-                        
                     />
                     : <></>}
-                    </div>
+                </div>
 
                     <AddFuel 
                         addFuelPopup={addFuelPopup}
@@ -256,7 +268,21 @@ export const Categories = () => {
                         addMaterialPopup={addMaterialPopup}
                         setAddMaterialPopup={setAddMaterialPopup}
                     />
-            </div>   
+                    <EditEmission
+                        editEnergyPopup={editEnergyPopup}
+                        setEditEnergyPopup={setEditEnergyPopup}
+                        activity={activity}
+                        emissionsProp={emissionsProp}
+                        setEmissionsProp={setEmissionsProp}
+                        emissionId={emissionId}
+                    />
+                    <DeleteEmission 
+                        openDeletePopup={openDeletePopup}
+                        setDeletePopup={setDeletePopup}
+                        category={category}
+                        emissionId={emissionId}
+                    />
+                </div>   
         </div>  
     </>
   )

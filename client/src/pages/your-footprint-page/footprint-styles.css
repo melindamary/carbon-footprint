@@ -249,3 +249,17 @@
     border: solid 1px #dedede;
     color: #2d6a4f;
 }
+
+.category-search-btn{
+    background: #2d6a4f;
+    background:#52b788;
+    color: white;
+    /* color: black; */
+    border: none;
+    font-size: 16px;
+}
+.category-search-btn:hover{
+    cursor: pointer;
+    background: rgba(45,106,79,0.9);
+    background: rgba(82,183,136,0.9);
+}

@@ -48,9 +48,9 @@ export const Footprint = () => {
             
         },
         {
-            title: 'Business trips',
-            icon: <LocalAirportOutlinedIcon style={{fontSize: '30px'}}/>,
-            link: '',
+            // title: 'Business trips',
+            // icon: <LocalAirportOutlinedIcon style={{fontSize: '30px'}}/>,
+            // link: '',
             
         },
         
@@ -63,7 +63,7 @@ export const Footprint = () => {
             <PageTitle name={"Welcome, "+ username }/>
             <div className="content">
                 <div className="footprint-heading">
-                     Select one of the options below to calculate   
+                     Select one of the options below to calculate.
                 </div>
                 <div className="footprint-content">
                     {Calculator.map((option,key) => {

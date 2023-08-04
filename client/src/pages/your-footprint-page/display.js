@@ -17,37 +17,46 @@ export const DisplayFootprint = () => {
     const [vehicleDetails, setVehicleDetails] = useState([]);
     const [materialDetails, setMaterialDetails] = useState([]);
     const [footprintTotal, setFootprintTotal] = useState(0);
+    const [searchTerm, setSearchTerm]=useState('');
+    const [year, setYear] = useState(new Date().getFullYear());
+
     const toggle = (index) => {
         setToggleState(index);
     }
 
     useEffect(() => {
 
-        const fetchData = async (userid) => {
+        const fetchData = async (userid,year) => {
             try {
-              const footprintsResult = await Axios.get(`/categorywise-footprint2/${userid}`);
+                console.log("year:", year);
+
+              const footprintsResult = await Axios.get(`/categorywise-footprint2/${userid}&${year}`);
               console.log(footprintsResult.data);
               setFootprints(footprintsResult.data);
           
-              const fuelResult = await Axios.get(`/fuel-details/${userid}`);
+              const fuelResult = await Axios.get(`/fuel-details/${userid}&${year}`);
               setFuelDetails(fuelResult.data);
           
-              const vehicleResult = await Axios.get(`/vehicle-details/${userid}`);
+              const vehicleResult = await Axios.get(`/vehicle-details/${userid}&${year}`);
               setVehicleDetails(vehicleResult.data);
           
-              const total = await Axios.get(`/get-total-footprint/${userid}`);
+              const total = await Axios.get(`/get-total-yearly-footprint/${userid}&${year}`);
               setFootprintTotal(total.data.total);
           
-              const response5 = await Axios.get(`/material-details/${userid}`);
+              const response5 = await Axios.get(`/material-details/${userid}&${year}`);
               setMaterialDetails(response5.data);
             } catch (error) {
               // Handle any errors
             }
           };
           
-          fetchData(userid);
+          fetchData(userid,year);
         
-    }, []);
+    }, [year]);
+
+    const handleSubmit = () => {
+        setYear(searchTerm);
+    }
 
     const columns1 = [
         {field: 'category_id', headerName: 'ID', width: 300},
@@ -55,24 +64,26 @@ export const DisplayFootprint = () => {
         {field: 'total', headerName: 'Footprint', width: 100},
         // {field: 'post_date', headerName: 'Created at', width: 220, renderCell: params=>moment(params.row.join_date).format('DD-MM-YYYY')},
     ];
+
     const columns_fuels = [
-        {field: 'sno', headerName: 'S.No.', width: 130},
-        {field: 'activity_item', headerName: 'Fuel', width: 150},
+        {field: 'sno', headerName: 'S.No.', width: 160},
+        {field: 'activity_item', headerName: 'Fuel', width: 160},
         {field: 'sum', headerName: 'Footprint', width: 150},
 
     ];
     const columns_vehicles = [
-        {field: 'sno', headerName: 'S.No.', width: 80},
-        {field: 'vehicle_type', headerName: 'Type', width: 120},
+        {field: 'sno', headerName: 'S.No.', width: 120},
+        {field: 'vehicle_type', headerName: 'Type', width: 140},
         {field: 'vehicle_size', headerName: 'Size', width: 120},
-        {field: 'fuel_type', headerName: 'Fuel', width: 100},
+        {field: 'quantity', headerName: 'Quantity', width: 120},
+        {field: 'fuel_type', headerName: 'Fuel', width: 120},
         {field: 'sum', headerName: 'Footprint', width: 100},
     ];
 
     const columns_materials = [
-        {field: 'sno', headerName: 'S.No.', width: 80},
-        {field: 'item', headerName: 'Material', width: 120},
-        {field: 'type', headerName: 'Type', width: 120},
+        {field: 'sno', headerName: 'S.No.', width: 160},
+        {field: 'item', headerName: 'Material', width: 160},
+        {field: 'type', headerName: 'Type', width: 160},
         {field: 'sum', headerName: 'Footprint', width: 100},
     ];
 
@@ -82,9 +93,12 @@ export const DisplayFootprint = () => {
                 <SideNav />
                 <PageTitle name="Footprint results"/>
                 <div className="content">
-                    <div className ='search-bar'> 
+                    <div className ='search-bar' style={{marginLeft: "785px"}}> 
                         <SearchIcon style={{color: "#dedede", position: "relative", left: "30px", top: "3px"}}/>
-                        <input type='text' placeholder='Search by Year'></input>
+                        <input type='text' placeholder='Enter Year' style={{width: "130px", borderRadius: "0px"}}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        ></input>
+                        <button className="category-search-btn" onClick={handleSubmit}> Search</button>
                     </div>
                     <div className='results'>
                         {/* <div className="charts" >
@@ -110,10 +124,10 @@ export const DisplayFootprint = () => {
                                     className={toggleState === 4? "active-tab-footprint" : "tab-button-footprint"}
                                     onClick={() => {toggle(4)}}
                                 >Material Usage</button>
-                                <button
+                                {/* <button
                                     className={toggleState === 5? "active-tab-footprint" : "tab-button-footprint"}
                                     onClick={() => {toggle(5)}}
-                                >Business Trips</button>
+                                >Business Trips</button> */}
                             </div>
 
                             <div>

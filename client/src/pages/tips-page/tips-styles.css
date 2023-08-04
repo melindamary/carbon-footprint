@@ -131,3 +131,50 @@
     font-size: 17px;
     
 }
+
+.breadcrumb{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 7%;
+    /* gap: 0.5rem; */
+}
+
+.breadcrumb button{
+    width: 110px;
+    height: 30px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    color: #52b788;
+    /* color: #40916c; */
+    /* border-bottom: solid 1px; */
+   
+}
+.breadcrumb button:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+.focused{
+    color: #40916c !important; 
+    font-weight: bold;
+    
+}
+
+.commit-action-btn{
+    height: 42px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 5%;
+    font-size: 16px;
+    background: #2d6a4f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background:  #52b788;
+}
+
+.commit-action-btn:hover{
+    cursor: pointer;
+    background: rgba(45, 106, 79, 0.9);
+}

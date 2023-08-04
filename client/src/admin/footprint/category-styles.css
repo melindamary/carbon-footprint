@@ -42,3 +42,13 @@
 .fuel-buttons{
     margin-left:10%;
 }
+.delete-error-message{
+    color: #d11a2a;
+    margin: auto;
+    text-align: left;
+    margin-left: 10px;
+    width: 250px;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

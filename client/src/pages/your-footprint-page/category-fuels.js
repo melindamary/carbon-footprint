@@ -43,11 +43,11 @@ export const CategoryFuels = () => {
             <div className="content">
                 <div className="footprint-category-content">
                     <h3> Emissions From Primary Fuel Sources Combusted</h3>
-                    <form className="calculator-form">
+                    <form className="calculator-form" onSubmit={handleSubmit}>
                         <label>Select fuel used:</label> <br/>
-                        <select 
+                        <select required
                             onChange={(event) => setActivity(event.target.value)}>
-                            <option>Select</option>
+                            <option value="">Select</option>
                             {fuels.map((fuel, key) => {
                                 return ( 
                                     <option key={key}>{fuel.activity_item}</option>
@@ -60,7 +60,7 @@ export const CategoryFuels = () => {
                             onChange={(event) => setAmount(event.target.value)}
                         /> <br/>
 
-                        <button onClick={handleSubmit}>Calculate</button>
+                        <button type="submit">Calculate</button>
                     </form>
                 </div>   
             </div>

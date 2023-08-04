@@ -24,6 +24,9 @@ export const Home = () => {
                 setOffset(response.data.offset);
                 setCount(response.data.count);
             })
+        });
+        Axios.get(`/get-totalActions/${userid}`).then((response) => {
+            setActions(response.data[0].count);
         })
         
     }, [footprint]);
@@ -55,7 +58,7 @@ export const Home = () => {
                     </div>
                 </div>
                 <div className="data-visualization">
-                <h3><u>Footprint Data {new Date().getFullYear()}</u></h3>
+                <h3><u>Footprint Data ({new Date().getFullYear()-1} - {new Date().getFullYear()}) </u></h3>
                    <div style={{width: "550px", marginLeft: "25%", marginTop: "-5%"}}><PieChart /></div> 
                 </div>
                 

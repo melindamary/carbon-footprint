@@ -7,7 +7,7 @@ export const getEmissionsInfo = (req, res) => {
         // console.log(result)
         res.send(result);
     })
-}
+};
 
 export const getVehiclesInfo = (req, res) => {
     db.query("SELECT ROW_NUMBER() OVER (ORDER BY eu.activity_id) as sno, eu.activity_id, eu.activity_item as activity,\
@@ -17,7 +17,7 @@ export const getVehiclesInfo = (req, res) => {
         // console.log(result)
         res.send(result);
     })
-}
+};
 
 export const getMaterialsInfo = (req, res) => {
     db.query("SELECT ROW_NUMBER() OVER (ORDER BY eu.activity_id) as sno, eu.activity_id, eu.activity_item as activity, \
@@ -26,19 +26,29 @@ export const getMaterialsInfo = (req, res) => {
         // console.log(result)
         res.send(result);
     })
-}
-
+};
 
 export const addEmissionsFuel = (req, res) => {
     const item = req.body.name;
     const emissions = req.body.emissions;
     const category = 3;
-    db.query("Insert into energy_usage(activity_item, category_id, emissions_per_unit) values(?,?,?)",
-    [item, category, emissions], (err, result) => {
+    db.query("Select COUNT(*) as count from energy_usage where activity_item = ?", [item], (err, result) =>{
         if(err) console.log(err);
-        else console.log("Inserted");
+        console.log(result);
+        if(result[0].count>0) 
+        {
+            console.log("Activity already exists");
+        }
+        else{
+            db.query("Insert into energy_usage(activity_item, category_id, emissions_per_unit) values(?,?,?)",
+            [item, category, emissions], (err, result) => {
+                if(err) console.log(err);
+            else console.log("Inserted");
     })
-}
+        }
+    })
+    
+};
 
 export const addEmissionsVehicle = (req, res) => {
     const name= req.body.name;
@@ -62,8 +72,7 @@ export const addEmissionsVehicle = (req, res) => {
             })
         }
     })
-}
-
+};
 
 export const addEmissionsMaterial = (req, res) => {
     const name= req.body.name;
@@ -86,31 +95,72 @@ export const addEmissionsMaterial = (req, res) => {
             })
         }
     })
-}
+};
 
 export const deleteFuel = (req, res) => {
-    db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
+    db.query("Select COUNT(userid) as count from user_footprint where activity_id = ?", req.params.id, (err, result) => {
         if(err) console.log(err);
-        else{
-            console.log("Deleted");
+        else if(result[0].count>0) {
+            res.send("Deletion not possible. User footprint associated with this category exists!");
+        }
+        else {
+            console.log(result[0].count)
+            db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
+                if(err) console.log(err);
+                else{
+                    res.send("Deleted")
+                }
+            })
         }
     })
-}
+    
+};
 
 export const deleteVehicle = (req, res) => {
-    db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
-           db.query('Delete from transportation where vehicle_id = ?',req.params.id, (err, result) =>{
-                if(err) console.log(err);
-                else console.log("Deleted");
-           })
+    db.query("Select COUNT(userid) as count from user_footprint where activity_id = ?", req.params.id, (err, result) => {
+        if(err) console.log(err);
+        else if(result[0].count>0) {
+            // console.log("Dependency exists!");
+            res.send("Deletion not possible. User footprint associated with this category exists!");
+        }
+        else{
+            db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
+                db.query('Delete from transportation where vehicle_id = ?',req.params.id, (err, result) =>{
+                     if(err) console.log(err);
+                     else res.send("Deleted");
+                })
+         })
+        }
     })
-}
+    
+};
 
 export const deleteMaterial = (req, res) => {
-    db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
-           db.query('Delete from materials where material_usage_id = ?',req.params.id, (err, result) =>{
-                if(err) console.log(err);
-                else console.log("Deleted");
-           })
+    db.query("Select COUNT(userid) as count from user_footprint where activity_id = ?", req.params.id, (err, result) => {
+        if(err) console.log(err);
+        else if(result[0].count>0) {
+            console.log("Dependency exists");
+            res.send("Deletion not possible. User footprint associated with this category exists!");
+        }
+        else{
+            db.query('Delete from energy_usage where activity_id = ?', req.params.id, (err, result) => {
+                db.query('Delete from materials where material_usage_id = ?',req.params.id, (err, result) =>{
+                     if(err) console.log(err);
+                     else res.send("Deleted");
+                })
+         })
+        }
     })
-}
+    
+};
+
+export const updateEmissions = (req, res) => {
+    const emissions = req.body.emissions;
+    const activityid = req.body.activityid;
+    console.log(emissions);
+    db.query("Update energy_usage set emissions_per_unit = ? where activity_id = ?", [emissions, activityid],
+    (err, result) => {
+        if(err) console.log(err);
+        else console.log("Updated emissions!");
+    } )
+};

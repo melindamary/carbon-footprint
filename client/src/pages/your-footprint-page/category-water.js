@@ -39,7 +39,7 @@ export const CategoryWater = () => {
             <div className="content">
                 <div className="footprint-category-content">
                     <h3>Emissions From Water Supply</h3>
-                    <form className="calculator-form">
+                    <form className="calculator-form" onSubmit={handleSubmit}>
                         <label>Water used in cubic metres (m<sup>3</sup>):</label> <br/>
                         <input type="number" name="water-units" required
                              onChange={(event) => {
@@ -47,7 +47,7 @@ export const CategoryWater = () => {
                             }}
                         /> <br/>
 
-                        <button onClick={handleSubmit}>Calculate</button>
+                        <button type="submit">Calculate</button>
                     </form>
                 </div>   
             </div>

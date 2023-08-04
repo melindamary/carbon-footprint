@@ -22,7 +22,8 @@ export const BlogComponent = () => {
     // console.log();
     navigate("/view-posts");
     
-  }
+  };
+  
   return (
     <>
         <div className="home">
