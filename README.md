@@ -5,7 +5,7 @@
 - #### [Screenshots](#screenshots)
 ---
 ### About
-The carbon footprint web application aims to help organizations calculate their carbon footprint in various categories (electricity, water, passenger and delivery vehicles, fuels etc.) and be aware of their actions and helps them take measures to reduce the negative impact.
+The carbon footprint web application aims to help organizations calculate their carbon footprint in various categories (electricity, water, passenger and delivery vehicles, fuels etc.) and be aware of their actions and help them take measures to reduce the negative impact.
 The application consists of modules such as:
 * carbon footprint calculator 
 * footprint reports module
