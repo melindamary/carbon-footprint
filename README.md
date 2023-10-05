@@ -21,6 +21,7 @@ The application consists of modules such as:
 * Back End: MySQL (database), Node.js, Express.js
 ---
 ### Sample Screenshots of the project
+<img src="https://user-images.githubusercontent.com/65484282/ff581b7e-d1cf-4738-897b-f9a0f7a680ab.png" width="45%">
 <img src="https://github.com/melindamary/carbon-footprint/assets/65484282/ff581b7e-d1cf-4738-897b-f9a0f7a680ab" width="45%"/> 
 <img src="https://github.com/melindamary/carbon-footprint/assets/65484282/942048a0-b754-4825-b4b3-1a4d7bb5687f" width="45%"/> 
 <img src="https://github.com/melindamary/carbon-footprint/assets/65484282/e24dfd2e-cc57-4837-ae28-3effe595c676" width="45%"/>
